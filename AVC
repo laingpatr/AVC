@@ -1,1 +1,83 @@
 
+#include <iostream>
+#include "E101.h"
+
+using namespace std;
+
+int main()
+{
+  int err;
+  cout<<" Hello"<<endl;
+  err = init(0);
+  cout<<"After init() error="<<err<<endl;
+  int white = 0;
+  int black = 0;
+  int arraycol[320];
+  int arrindex[320];
+  int arraynum[320];
+  
+  char servadd[15] = "130.195.6.196";
+  char message[24] = "Please";
+  
+  connect_to_server(servadd, 1024);
+  send_to_server(message);
+  receive_from_server(message);
+  send_to_server(message);
+  set_motors(1,31);
+  set_motors(5,55);
+  hardware_exchange();
+  
+  
+  while (true) {
+	  
+	  
+		int col = 0;
+		
+		while(col < 320){
+			
+			white = get_pixel(120, col, 3);
+
+			if (white > 100) {
+				black = 0;
+			}
+			else {
+				black = 1;
+			}
+			
+			if (black == 1) {
+				arraycol[320] += black;
+			}
+			
+			
+			for (int i = 0; i < arraycol[320]; i++) {
+				arrindex[320] += (i - 160);
+			}
+			for (int i = 0; i < arraycol[320]; i++) {
+				arraynum[320] += (arraycol[i] * arrindex[i]);
+			}
+			
+			for (int i = 0; i < arraynum[320]; i++) {
+				if (arraynum[i] > -10 && arraynum[i] < 10) {
+					//continue straight
+				}
+				else if (arraynum[i] < -10 && arraynum[i] > -70) {
+					//slight turn
+				}
+				else if (arraynum[i] < -70 && arraynum[i] > -110) {
+					//sharper turn
+				}
+				else if (arraynum[i] == 0) {
+					//Rotate robot
+				}
+				else if (arraynum[i] < -110) {
+					//turn sharply
+				}
+			}
+			
+			
+			
+			col++;
+		}
+		
+	}
+}
