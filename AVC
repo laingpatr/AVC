@@ -118,5 +118,6 @@ int main()
 		}
 		
 	}
+	set_motors(3,30);
 	//Code for section 4 (if we ever do it, which we won't)
 }
