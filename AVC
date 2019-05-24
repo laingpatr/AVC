@@ -13,9 +13,6 @@ int main()
   int black = 0;
   int red = 0;
   int redcount = 0;
-  int arraycol[320];
-  int arrindex[320];
-  int arraynum[320];
   
   char servadd[15] = "130.195.6.196";
   char message[24] = "Please";
@@ -29,13 +26,17 @@ int main()
   hardware_exchange();
   
   
-  while (redcount <= 1) {
+  while (true) {
 	  take_picture();
 	  
 	  
 		int col = 0;
 		
 		while(col < 320){
+			
+			int arraycol[320] = {};
+			int arrindex[320] = {};
+			int arraynum[320] = {};
 			
 			white = get_pixel(120, col, 3);
 			red = get_pixel(120, col, 1);
@@ -47,18 +48,16 @@ int main()
 				black = 1;
 			}
 			
-			if (black == 1) {
-				arraycol[320] += black;
-			}
-			
+			arraycol[col] = black;
 			
 			for (int i = 0; i < arraycol[320]; i++) {
-				arrindex[320] += (i - 160);
+				arrindex[i] == (i - 160);
 			}
 			for (int i = 0; i < arraycol[320]; i++) {
-				arraynum[320] += (arraycol[i] * arrindex[i]);
+				arraynum[i] = (arraycol[i] * arrindex[i]);
 			}
-			
+		}
+		col++;
 			for (int i = 0; i < arraynum[320]; i++) {
 				if (arraynum[i] > -10 && arraynum[i] < 10) {
 					//continue straight
@@ -115,10 +114,11 @@ int main()
 			
 			
 			
-			col++;
 		}
 		
 	}
 	set_motors(3,30);
+	hardware_exchange();
+	sleep1(500);
 	//Code for section 4 (if we ever do it, which we won't)
 }
