@@ -37,6 +37,10 @@ int main()
 		
 		while(col < 320){
 			
+			arraycol[320] = {};
+			arrindex[320] = {};
+			arraynum[320] = {};
+			
 			white = get_pixel(120, col, 3);
 			red = get_pixel(120, col, 1);
 
@@ -47,16 +51,13 @@ int main()
 				black = 1;
 			}
 			
-			if (black == 1) {
-				arraycol[320] += black;
-			}
-			
+			arraycol[col] = black;
 			
 			for (int i = 0; i < arraycol[320]; i++) {
-				arrindex[320] += (i - 160);
+				arrindex[i] == (i - 160);
 			}
 			for (int i = 0; i < arraycol[320]; i++) {
-				arraynum[320] += (arraycol[i] * arrindex[i]);
+				arraynum[i] = (arraycol[i] * arrindex[i]);
 			}
 			
 			for (int i = 0; i < arraynum[320]; i++) {
